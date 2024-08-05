@@ -3,16 +3,13 @@ import { google } from 'googleapis';
 
 export default function Home() {
 	const oauth2Client = new google.auth.OAuth2(
-		YOUR_CLIENT_ID,
-		YOUR_CLIENT_SECRET,
-		YOUR_REDIRECT_URL
+		process.env.GOOGLE_CLIENT_ID,
+		process.env.GOOGLE_CLIENT_SECRET,
+		process.env.GOOGLE_REDIRECT_URL
 	);
 
 	// generate a url that asks permissions for Blogger and Google Calendar scopes
-	const scopes = [
-		'https://www.googleapis.com/auth/blogger',
-		'https://www.googleapis.com/auth/calendar',
-	];
+	const scopes = ['https://www.googleapis.com/auth/calendar'];
 
 	const url = oauth2Client.generateAuthUrl({
 		// 'online' (default) or 'offline' (gets refresh_token)
@@ -21,6 +18,8 @@ export default function Home() {
 		// If you only need one scope, you can pass it as a string
 		scope: scopes,
 	});
+
+	console.log(url);
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -111,6 +110,23 @@ export default function Home() {
 					</h2>
 					<p className="m-0 max-w-[30ch] text-sm opacity-50">
 						Explore starter templates for Next.js.
+					</p>
+				</a>
+
+				<a
+					href={url}
+					className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<h2 className="mb-3 text-2xl font-semibold">
+						Authenticate with Google{' '}
+						<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+							-&gt;
+						</span>
+					</h2>
+					<p className="m-0 max-w-[30ch] text-sm opacity-50">
+						Connect your Google account to access calendar features.
 					</p>
 				</a>
 			</div>
