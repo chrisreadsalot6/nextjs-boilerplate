@@ -8,7 +8,7 @@ export default function Home() {
 		process.env.GOOGLE_REDIRECT_URL
 	);
 
-	// generate a url that asks permissions for Blogger and Google Calendar scopes
+	// generate a url that asks permissions for Google Calendar scopes
 	const scopes = ['https://www.googleapis.com/auth/calendar'];
 
 	const url = oauth2Client.generateAuthUrl({
