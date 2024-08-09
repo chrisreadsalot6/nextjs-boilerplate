@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import { google } from 'googleapis';
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/route.ts';
 
-export default function Home() {
-	const { data: session, status } = useSession();
+export default async function Home() {
+	const session = await getServerSession(authOptions);
 
 	const oauth2Client = new google.auth.OAuth2(
 		process.env.GOOGLE_CLIENT_ID,
