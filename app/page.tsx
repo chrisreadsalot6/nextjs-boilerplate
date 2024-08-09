@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { google } from 'googleapis';
 import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/route.ts';
+import { authOptions } from './api/auth/[...nextauth]';
 
 export default async function Home() {
 	const session = await getServerSession(authOptions);
@@ -25,11 +25,11 @@ export default async function Home() {
 
 	console.log(url);
 
-	if (status === 'loading') {
+	if (session?.status === 'loading') {
 		return <p>Loading...</p>;
 	}
 
-	if (status === 'unauthenticated') {
+	if (session?.status === 'unauthenticated') {
 		return <p>Access Denied</p>;
 	}
 
