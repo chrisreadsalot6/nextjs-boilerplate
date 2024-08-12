@@ -12,11 +12,14 @@ export const authOptions = {
 	callbacks: {
 		async jwt({ token, account }: { token: JWT; account: any }) {
 			if (account) {
+				console.log('account', account);
 				token.accessToken = account.access_token;
 			}
 			return token;
 		},
 		async session({ session, token }: { session: any; token: JWT }) {
+			console.log('session', session);
+			console.log('token', token);
 			session.accessToken = token.accessToken;
 			return session;
 		},

@@ -23,8 +23,6 @@ export default async function Home() {
 		scope: scopes,
 	});
 
-	console.log(url);
-
 	if (session?.status === 'loading') {
 		return <p>Loading...</p>;
 	}
