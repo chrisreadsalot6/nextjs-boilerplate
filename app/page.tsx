@@ -21,6 +21,7 @@ export default async function Home() {
 
 		// If you only need one scope, you can pass it as a string
 		scope: scopes,
+		redirect_uri: process.env.GOOGLE_REDIRECT_URL,
 	});
 
 	if (session?.status === 'loading') {
